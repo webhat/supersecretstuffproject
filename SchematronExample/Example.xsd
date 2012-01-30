@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+    <xs:element name="First">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Third" type="Str" maxOccurs="unbounded"/>
+                <xs:element name="Second">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                            <xs:element name="Third" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attributeGroup ref="agrRef"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attributeGroup ref="agrKey"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attributeGroup ref="agrKey"/>
+        </xs:complexType>
+        <xs:keyref refer="ThirdVal" name="ThirdValRef">
+            <xs:selector xpath="Second/Third"></xs:selector>
+            <xs:field xpath="@Ref"></xs:field>
+        </xs:keyref>
+        <xs:key name="ThirdVal">
+            <xs:selector xpath="Third"></xs:selector>
+            <xs:field xpath="@Key"></xs:field>
+        </xs:key>
+    </xs:element>
+    <xs:attributeGroup name="agrKey">
+        <xs:attribute name="Key" type="xs:string" use="required"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="agrRef">
+        <xs:attribute name="Ref" type="xs:string" use="required"/>
+        <xs:attribute name="ExtRef" type="xs:string" use="optional"/>
+    </xs:attributeGroup>
+    <xs:complexType name="Str">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="Fourth" type="xs:string"/></xs:sequence>
+        <xs:attributeGroup ref="agrKey"/>
+    </xs:complexType>
+</xs:schema>

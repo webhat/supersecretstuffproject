@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<First xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:////ams-fp01/userdata$/1779/desktop/SchematronExample/Example.xsd" Key="Key0">
+    <Third Key="Key0">
+        <Fourth>Fourth0</Fourth>
+        <Fourth>Fourth1</Fourth>
+    </Third>
+    <Third Key="Key1">
+        <Fourth>Fourth2</Fourth>
+    </Third>
+    <Second Key="Key2">
+        <Third Ref="Key1" ExtRef="Key5"/>
+    </Second>
+</First>
